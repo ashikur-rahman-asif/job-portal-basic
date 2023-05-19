@@ -4,8 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
-// asif
-// wBiTyKhExmCOL4Uh
+
 
 // middleware
 app.use(cors());
@@ -75,6 +74,21 @@ async function run() {
           ],
         })
         .toArray();
+      res.send(result);
+    });
+    app.put("/updateJob/:id", async (req, res) => {
+      const id = req.params.id;
+      const body = req.body;
+      console.log(body);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          title: body.title,
+          salary: body.salary,
+          category: body.category,
+        },
+      };
+      const result = await jobsCollection.updateOne(filter, updateDoc);
       res.send(result);
     });
 

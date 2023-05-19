@@ -23,7 +23,7 @@ const MyJobs = () => {
       .then(data => {
         setJobs(data)
     })
- },[user])
+ },[user,control])
   
   const handleSearch = () => {
     fetch(`http://localhost:5000/getJobsByText/${searchText}`)
@@ -58,7 +58,7 @@ const MyJobs = () => {
             type="text"
             className="p-1"
           />{" "}
-          <button >Search</button>
+          <button onClick={handleSearch} >Search</button>
         </div>
         <Table striped bordered hover className="container">
           <thead>
